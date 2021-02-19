@@ -1,7 +1,15 @@
-import React, { Component } from 'react'
+import React, { useState } from "react";
+import { NavLink as RouterNavLink } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
-export class Login extends Component {
-    render() {
+ const Login =()=> {
+    const {
+        user,
+        isAuthenticated,
+        loginWithRedirect,
+        logout,
+      } = useAuth0();
+  
         return (
             <div>
                     <div class="home-btn d-none d-sm-block">
@@ -25,7 +33,6 @@ export class Login extends Component {
                                             <h4 class="font-size-18 mt-4">Welcome Back !</h4>
                                             <p class="text-muted">Sign in to continue to Nazox.</p>
                                         </div>
-
                                         <div class="p-2 mt-5">
                                             {/* <form class="form-horizontal" action=""> */}
 
@@ -49,12 +56,13 @@ export class Login extends Component {
                                                     <label class="custom-control-label"
                                                         for="customControlInline">Remember me</label>
                                                 </div>
-
+                                                
                                                 <div class="mt-4 text-center">
                                                     <button class="btn btn-primary w-md waves-effect waves-light"
-                                                        type="submit">Log In</button>
+                    onClick={() => loginWithRedirect()}
+                    type="submit" >Log In</button>
                                                 </div>
-
+                                                 
                                                 <div class="mt-4 text-center">
                                                     <a href="auth-recoverpw.html" class="text-muted"><i
                                                             class="mdi mdi-lock mr-1"></i> Forgot your password?</a>
@@ -89,6 +97,6 @@ export class Login extends Component {
             </div>
         )
     }
-}
+
 
 export default Login
